@@ -12,24 +12,24 @@ use PhutureProof\Guardian;
 
 class MockObject
 {
-	/** @var string $name */
-	protected $name;
+    /** @var string $name */
+    protected $name;
 
     /**
      * MockObject constructor.
      */
-	public function __construct()
-	{
-		$this->name = 'MockObject';
-	}
+    public function __construct()
+    {
+        $this->name = 'MockObject';
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
     /**
      * @param string $name
@@ -40,7 +40,8 @@ class MockObject
     }
 }
 
-class MockObjectTwo extends MockObject {
+class MockObjectTwo extends MockObject
+{
     protected $name;
 
     public function __construct()
@@ -52,34 +53,44 @@ class MockObjectTwo extends MockObject {
 
 class GaurdianTest extends \PHPUnit_Framework_TestCase
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-	
-	public function testGuardianConstructor()
-	{
-		$this->assertTrue(is_array(Guardian::getResolvers()));
-	}
-	
-	public function testGuardianRegister()
-	{
-        Guardian::register('mock.object', function(){ return new MockObject(); });
-		$this->assertArrayHasKey('mock.object', Guardian::getResolvers());
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function testGuardianConstructor()
+    {
+        $this->assertTrue(is_array(Guardian::getResolvers()));
+    }
+
+    public function testGuardianRegister()
+    {
+        Guardian::register('mock.object', function () {
+            return new MockObject();
+        });
+        $this->assertArrayHasKey('mock.object', Guardian::getResolvers());
+    }
 
     public function testGuardianReturnsCorrectObjectType()
     {
-        Guardian::register('mock.object', function(){ return new MockObject(); });
+        Guardian::register('mock.object', function () {
+            return new MockObject();
+        });
         $this->assertTrue(Guardian::make('mock.object') instanceof MockObject);
-        Guardian::register('mock.object.two', function(){ return new MockObjectTwo(); });
+        Guardian::register('mock.object.two', function () {
+            return new MockObjectTwo();
+        });
         $this->assertTrue(Guardian::make('mock.object.two') instanceof MockObjectTwo);
     }
 
     public function testGuardianReturnedObjectsContainCorrectMethods()
     {
-        Guardian::register('mock.object', function(){ return new MockObject(); });
-        Guardian::register('mock.object.two', function(){ return new MockObjectTwo(); });
+        Guardian::register('mock.object', function () {
+            return new MockObject();
+        });
+        Guardian::register('mock.object.two', function () {
+            return new MockObjectTwo();
+        });
 
         /** @var MockObject $mockObject */
         $mockObject = Guardian::make('mock.object');
