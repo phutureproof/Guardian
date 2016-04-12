@@ -89,6 +89,7 @@ class GaurdianTest extends \PHPUnit_Framework_TestCase
         Guardian::register('mock.object', function () {
             return new MockObject();
         });
+        
         Guardian::register('mock.object.two', function () {
             return new MockObjectTwo();
         });
@@ -106,15 +107,19 @@ class GaurdianTest extends \PHPUnit_Framework_TestCase
     public function testGuardianThrowsExceptionForBadResolver()
     {
         $this->expectException('Exception');
+
         Guardian::make('thisshouldthrowanexception');
     }
 
     public function testGuardianReturnedObjectConstructorAcceptedArgument()
     {
         $name = 'NewName';
+
         Guardian::register('mock.object', function() use ($name) { return new MockObject($name); });
+
         /** @var MockObject $mockObject */
-        $mockObject = Guardian::make('mock.object', 'test');
+        $mockObject = Guardian::make('mock.object', $name);
+
         $this->assertEquals($name, $mockObject->getName());
     }
 }
