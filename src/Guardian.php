@@ -24,7 +24,7 @@ class Guardian
 			return call_user_func_array($resolver, $params);
 		}
 
-		throw new \Exception("Gaurdian Error::No resolver found for {$name}");
+		throw new \Exception("Guardian Error::No resolver found for {$name}");
 	}
 
 	public static function getResolvers()
