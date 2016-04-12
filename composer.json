@@ -1,0 +1,20 @@
+{
+  "name": "phutureproof/gaurdian",
+  "description": "Dependency injector",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dale Paget",
+      "email": "dale@phutureproof.com"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "5.3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "PhutureProof\\": "src/"
+    }
+  }
+}
