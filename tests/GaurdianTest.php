@@ -89,7 +89,7 @@ class GaurdianTest extends \PHPUnit_Framework_TestCase
         Guardian::register('mock.object', function () {
             return new MockObject();
         });
-        
+
         Guardian::register('mock.object.two', function () {
             return new MockObjectTwo();
         });
@@ -106,7 +106,7 @@ class GaurdianTest extends \PHPUnit_Framework_TestCase
 
     public function testGuardianThrowsExceptionForBadResolver()
     {
-        $this->expectException('Exception');
+        $this->expectException('PhutureProof\\Guardian\\Exceptions\\ResolverMissingException');
 
         Guardian::make('thisshouldthrowanexception');
     }

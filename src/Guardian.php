@@ -8,6 +8,8 @@
 
 namespace PhutureProof;
 
+use PhutureProof\Guardian\Exceptions\ResolverMissingException;
+
 class Guardian
 {
     protected static $resolvers = [];
@@ -24,7 +26,7 @@ class Guardian
             return call_user_func_array($resolver, [$params]);
         }
 
-        throw new \Exception("Guardian Error::No resolver found for {$name}");
+        throw new ResolverMissingException("Guardian Error::No resolver found for {$name}");
     }
 
     public static function getResolvers()
