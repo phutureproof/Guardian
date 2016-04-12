@@ -116,6 +116,5 @@ class GaurdianTest extends \PHPUnit_Framework_TestCase
         /** @var MockObject $mockObject */
         $mockObject = Guardian::make('mock.object', 'test');
         $this->assertEquals($name, $mockObject->getName());
-        echo $mockObject->getName();
     }
 }
