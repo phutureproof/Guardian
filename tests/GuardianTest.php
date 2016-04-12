@@ -52,7 +52,7 @@ class MockObjectTwo extends MockObject
     }
 }
 
-class GaurdianTest extends \PHPUnit_Framework_TestCase
+class GuardianTest extends \PHPUnit_Framework_TestCase
 {
     public function __construct()
     {
