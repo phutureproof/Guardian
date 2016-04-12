@@ -10,5 +10,4 @@ namespace PhutureProof\Guardian\Exceptions;
 
 class ResolverMissingException extends \Exception
 {
-
 }
