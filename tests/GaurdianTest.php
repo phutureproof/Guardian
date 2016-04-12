@@ -40,7 +40,15 @@ class MockObject
     }
 }
 
-class MockObjectTwo extends MockObject {}
+class MockObjectTwo extends MockObject {
+    protected $name;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setName('MockObjectTwo');
+    }
+}
 
 class GaurdianTest extends \PHPUnit_Framework_TestCase
 {
@@ -71,10 +79,21 @@ class GaurdianTest extends \PHPUnit_Framework_TestCase
     public function testGuardianReturnedObjectsContainCorrectMethods()
     {
         Guardian::register('mock.object', function(){ return new MockObject(); });
+        Guardian::register('mock.object.two', function(){ return new MockObjectTwo(); });
 
         /** @var MockObject $mockObject */
         $mockObject = Guardian::make('mock.object');
 
+        /** @var MockObjectTwo $mockObjectTwo */
+        $mockObjectTwo = Guardian::make('mock.object.two');
+
         $this->assertEquals('MockObject', $mockObject->getName());
+        $this->assertEquals('MockObjectTwo', $mockObjectTwo->getName());
+    }
+
+    public function testGuardianThrowsExceptionForBadResolver()
+    {
+        $this->expectException('Exception');
+        Guardian::make('thisshouldthrowanexception');
     }
 }
