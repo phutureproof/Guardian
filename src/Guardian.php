@@ -21,7 +21,7 @@ class Guardian
     {
         if (isset(static::$resolvers[$name])) {
             $resolver = static::$resolvers[$name];
-            return call_user_func_array($resolver, $params);
+            return call_user_func_array($resolver, [$params]);
         }
 
         throw new \Exception("Guardian Error::No resolver found for {$name}");

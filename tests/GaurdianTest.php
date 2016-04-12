@@ -17,10 +17,11 @@ class MockObject
 
     /**
      * MockObject constructor.
+     * @param string $name
      */
-    public function __construct()
+    public function __construct($name = 'MockObject')
     {
-        $this->name = 'MockObject';
+        $this->name = $name;
     }
 
     /**
@@ -106,5 +107,15 @@ class GaurdianTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException('Exception');
         Guardian::make('thisshouldthrowanexception');
+    }
+
+    public function testGuardianReturnedObjectConstructorAcceptedArgument()
+    {
+        $name = 'NewName';
+        Guardian::register('mock.object', function() use ($name) { return new MockObject($name); });
+        /** @var MockObject $mockObject */
+        $mockObject = Guardian::make('mock.object', 'test');
+        $this->assertEquals($name, $mockObject->getName());
+        echo $mockObject->getName();
     }
 }
