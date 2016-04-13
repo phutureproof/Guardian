@@ -1,5 +1,5 @@
+# local dev folders
 /.idea/
 /vendor/
-
-composer.phar
-phpunit.phar
+# any phars we're using
+*.phar
