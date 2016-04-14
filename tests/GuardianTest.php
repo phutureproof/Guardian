@@ -59,7 +59,7 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
 
     public function testGuardianConstructor()
     {
-        $this->assertTrue(is_array(Guardian::getDepencies()));
+        $this->assertTrue(is_array(Guardian::getDependencies()));
     }
 
     public function testGuardianRegister()
@@ -67,7 +67,7 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
         Guardian::register('mock.object', function () {
             return new MockObject();
         });
-        $this->assertArrayHasKey('mock.object', Guardian::getDepencies());
+        $this->assertArrayHasKey('mock.object', Guardian::getDependencies());
     }
 
     public function testGuardianReturnsCorrectObjectType()
