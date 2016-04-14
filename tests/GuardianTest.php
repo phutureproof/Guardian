@@ -124,4 +124,25 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($name, $mockObject->getName());
     }
+
+    public function testGuardianStaticResolverIsStatic()
+    {
+        $static = 'static';
+        $shared = 'shared';
+
+        Guardian::register('singleton.dependency.name', function () {
+            static $instance;
+            if (is_null($instance)) {
+                $instance = new MockObject();
+            }
+            return $instance;
+        });
+
+        Guardian::register($shared, function () {
+            return new MockObject();
+        });
+
+        $this->assertFalse((Guardian::make($shared) === Guardian::make($shared)));
+        $this->assertTrue((Guardian::make($static) === Guardian::make($static)));
+    }
 }
