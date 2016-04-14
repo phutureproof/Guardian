@@ -59,7 +59,7 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
 
     public function testGuardianConstructor()
     {
-        $this->assertTrue(is_array(Guardian::getResolvers()));
+        $this->assertTrue(is_array(Guardian::getDepencies()));
     }
 
     public function testGuardianRegister()
@@ -67,7 +67,7 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
         Guardian::register('mock.object', function () {
             return new MockObject();
         });
-        $this->assertArrayHasKey('mock.object', Guardian::getResolvers());
+        $this->assertArrayHasKey('mock.object', Guardian::getDepencies());
     }
 
     public function testGuardianReturnsCorrectObjectType()
@@ -102,12 +102,6 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('MockObjectTwo', $mockObjectTwo->getName());
     }
 
-    public function testGuardianThrowsExceptionForBadResolver()
-    {
-        $this->expectException('PhutureProof\\Guardian\\Exceptions\\ResolverMissingException');
-
-        Guardian::make('thisshouldthrowanexception');
-    }
 
     public function testGuardianReturnedObjectConstructorAcceptedArgument()
     {
@@ -137,10 +131,17 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
         });
 
         Guardian::register($shared, function () {
-            return new MockObject();
+            return new MockObjectTwo();
         });
 
         $this->assertFalse((Guardian::make($shared) === Guardian::make($shared)));
         $this->assertTrue((Guardian::make($static) === Guardian::make($static)));
+    }
+
+    public function testGuardianThrowsExceptionForBadResolver()
+    {
+        $this->expectException('PhutureProof\\Guardian\\Exceptions\\ResolverMissingException');
+
+        Guardian::make('thisshouldthrowanexception');
     }
 }
