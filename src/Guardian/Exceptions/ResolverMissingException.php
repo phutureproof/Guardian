@@ -3,9 +3,7 @@
  * PhutureProof/Guardian
  * Simple dependency injection container
  *
- * User: Dale
- * Date: 12/04/2016
- * Time: 21:19
+ * Dale Paget <dale@phutureproof.com>
  */
 
 namespace PhutureProof\Guardian\Exceptions;

@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Dale
- * Date: 12/04/2016
- * Time: 18:29
+ * Guardian tests
+ * Dale Paget <dale@phutureproof.com>
  */
 
 namespace PhutureProof\Guardian\Tests;
