@@ -115,7 +115,9 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
     {
         $name = 'NewName';
 
-        Guardian::register('mock.object', function() use ($name) { return new MockObject($name); });
+        Guardian::register('mock.object', function () use ($name) {
+            return new MockObject($name);
+        });
 
         /** @var MockObject $mockObject */
         $mockObject = Guardian::make('mock.object', $name);
