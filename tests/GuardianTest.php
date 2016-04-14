@@ -127,10 +127,10 @@ class GuardianTest extends \PHPUnit_Framework_TestCase
 
     public function testGuardianStaticResolverIsStatic()
     {
-        $static = 'static';
-        $shared = 'shared';
+        $static = 'singleton.dependency.name';
+        $shared = 'shared.dependency.name';
 
-        Guardian::register('singleton.dependency.name', function () {
+        Guardian::register($static, function () {
             static $instance;
             if (is_null($instance)) {
                 $instance = new MockObject();
