@@ -13,6 +13,10 @@ Develop
 
 [![Build Status](https://travis-ci.org/phutureproof/Guardian.svg?branch=develop)](https://travis-ci.org/phutureproof/Guardian)
 
+Code Climate
+
+[![Code Climate](https://codeclimate.com/github/phutureproof/Guardian/badges/gpa.svg)](https://codeclimate.com/github/phutureproof/Guardian)
+
 Basic Usage
 =
 

@@ -3,9 +3,7 @@
  * PhutureProof/Guardian
  * Simple dependency injection container
  *
- * User: Dale
- * Date: 12/04/2016
- * Time: 18:35
+ * Dale Paget <dale@phutureproof.com>
  */
 
 namespace PhutureProof;
@@ -14,25 +12,25 @@ use PhutureProof\Guardian\Exceptions\ResolverMissingException;
 
 class Guardian
 {
-    protected static $resolvers = [];
+    protected static $dependencies = [];
 
-    public static function register($name, $resolver)
+    public static function register($name, $decadency)
     {
-        static::$resolvers[$name] = $resolver;
+        static::$dependencies[$name] = $decadency;
     }
 
     public static function make($name, $params = [])
     {
-        if (isset(static::$resolvers[$name])) {
-            $resolver = static::$resolvers[$name];
+        if (isset(static::$dependencies[$name])) {
+            $resolver = static::$dependencies[$name];
             return call_user_func_array($resolver, [$params]);
         }
 
-        throw new ResolverMissingException("Guardian Error::No resolver found for {$name}");
+        throw new ResolverMissingException("Guardian Error::No dependency found for {$name}");
     }
 
-    public static function getResolvers()
+    public static function getDepencies()
     {
-        return static::$resolvers;
+        return static::$dependencies;
     }
 }
