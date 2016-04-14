@@ -29,7 +29,7 @@ class Guardian
         throw new ResolverMissingException("Guardian Error::No dependency found for {$name}");
     }
 
-    public static function getDepencies()
+    public static function getDependencies()
     {
         return static::$dependencies;
     }
