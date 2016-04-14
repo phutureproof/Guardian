@@ -50,7 +50,7 @@ Register a singleton
     Guardian::register('singleton.dependency.name', function () {
         static $instance;
         if (is_null($instance)) {
-            $instance = new MockObject();
+            $instance = new Dependency();
         }
         return $instance;
     });
