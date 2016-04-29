@@ -14,9 +14,9 @@ class Guardian
 {
     protected static $dependencies = [];
 
-    public static function register($name, $decadency)
+    public static function register($name, $dependency)
     {
-        static::$dependencies[$name] = $decadency;
+        static::$dependencies[$name] = $dependency;
     }
 
     public static function make($name, $params = [])
