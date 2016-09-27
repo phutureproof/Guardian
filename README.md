@@ -30,7 +30,7 @@ via composer
 or add this to your composer.json
 
     "require": {
-      "phutureproof/guardian": "~1"
+      "phutureproof/guardian": "~3"
     }
 
 or manually grab the src folder and put the files where ever you want.
