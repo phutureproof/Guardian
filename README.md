@@ -42,7 +42,7 @@ Create your dependencies and register functions to return instances of the objec
 
     Guardian::register('dependency.name', function()
     {
-        return new Dependancy();
+        return new Dependency();
     });
 
 Grab an instance of the dependency
